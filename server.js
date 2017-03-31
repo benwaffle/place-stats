@@ -2,6 +2,8 @@ const express = require('express')
 const app = express()
 const stats = require('./stats.js')
 
+app.use(require('morgan')('common'))
+
 app.get('/stats', (req, res) => {
     stats()
         .then(count => res.json(count))
