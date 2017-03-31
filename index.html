@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Reddit Place Stats</title>
+</head>
+<body>
+    <canvas id="chart"></canvas>
+    <br>
+    <a href="https://github.com/benwaffle/place-stats">source code</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script>
+    fetch('/stats')
+        .then(res => res.json())
+        .then(count => {
+            delete count['#FFFFFF'] // skews the chart
+            var chart = new Chart(document.getElementById('chart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(count),
+                    datasets: [{
+                        label: 'count',
+                        data: Object.values(count),
+                        backgroundColor: Object.keys(count)
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+</html>

@@ -8,6 +8,10 @@ app.get('/stats', (req, res) => {
         .catch(err => res.status(500).json({err}))
 })
 
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/index.html`)
+})
+
 app.listen(3000, function () {
     console.log('listening on :3000')
 })
