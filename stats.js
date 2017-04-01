@@ -17,7 +17,7 @@ function decode(e) {
 
 module.exports = function () {
     return new Promise((resolve, reject) => {
-        request('https://www.reddit.com/api/place/board-bitmap', (err, resp, body) => {
+        request({encoding: null, url: 'https://www.reddit.com/api/place/board-bitmap'}, (err, resp, body) => {
             if (err) {
                 reject(`download bitmap error: ${err}`)
                 return
