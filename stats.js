@@ -5,13 +5,11 @@ const colors = ["#FFFFFF","#E4E4E4","#888888","#222222","#FFA7D1","#E50000","#E5
 // taken from place-base.js
 function decode(e) {
     var i = new Uint8Array(1000 * 1000)
-    var s = 0
     var e = new Uint8Array(e.buffer, 4)
     for (var t = 0; t < e.byteLength; t++) {
-        i[s + 2 * t] = e[t] >> 4
-        i[s + 2 * t + 1] = e[t] & 15
+        i[2 * t] = e[t] >> 4
+        i[2 * t + 1] = e[t] & 15
     }
-    s += e.byteLength * 2
     return i
 }
 
